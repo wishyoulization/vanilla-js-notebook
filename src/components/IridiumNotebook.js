@@ -1,6 +1,6 @@
 import { html } from 'htm/preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { Runtime } from '@observablehq/runtime';
+import { Runtime, Inspector } from '@observablehq/runtime';
 import IridiumIconButton from './IridiumIconButton.js';
 import IridiumCell from './IridiumCell.js';
 
@@ -64,7 +64,9 @@ const IridiumNotebook = (props) => {
   useEffect(() => {
     main.define('runtime', [], () => runtime);
     main.define('main', [], () => main);
-    
+    main.define('Runtime', [], () => Runtime);
+    main.define('Inspector', [], () => Inspector);
+
     main.define('width', ['Generators'], (Generators) => {
       var old_width = null;
       return Generators.observe((change) => {

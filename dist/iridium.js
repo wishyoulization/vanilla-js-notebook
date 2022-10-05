@@ -69,7 +69,7 @@ var e,t,r,n,i,s={},a=[],o=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo
             />
           </div>
         </div>`:null}
-  </div>`},Pu=e=>{const t=K(null),[r,n]=G(new Fn),[i,s]=G(r.module()),[a,o]=G(e.cells),[u,l]=G(Math.max.apply(Math,[0,...e.cells].map((e=>e.id||0)))+1),c=t=>{!t.ctrlKey&&!t.metaKey||"s"!==t.key&&"S"!==t.key||(e.onSave(a),t.preventDefault())};return J((()=>{i.define("runtime",[],(()=>r)),i.define("main",[],(()=>i)),i.define("width",["Generators"],(e=>{var r=null;return e.observe((e=>{const n=new ResizeObserver((t=>{var n=0;for(let e of t)n=e.contentRect.width-28;n!=r&&(e(n),r=n)}));return n.observe(t.current),()=>n.disconnect()}))})),e.onReady(i)}),[]),J((()=>(e._cells(a),document.addEventListener("keydown",c),()=>{document.removeEventListener("keydown",c)})),[a]),j`<div class="IridiumNotebook" ref=${t}>
+  </div>`},Pu=e=>{const t=K(null),[r,n]=G(new Fn),[i,s]=G(r.module()),[a,o]=G(e.cells),[u,l]=G(Math.max.apply(Math,[0,...e.cells].map((e=>e.id||0)))+1),c=t=>{!t.ctrlKey&&!t.metaKey||"s"!==t.key&&"S"!==t.key||(e.onSave(a),t.preventDefault())};return J((()=>{i.define("runtime",[],(()=>r)),i.define("main",[],(()=>i)),i.define("Runtime",[],(()=>Fn)),i.define("Inspector",[],(()=>pt)),i.define("width",["Generators"],(e=>{var r=null;return e.observe((e=>{const n=new ResizeObserver((t=>{var n=0;for(let e of t)n=e.contentRect.width-28;n!=r&&(e(n),r=n)}));return n.observe(t.current),()=>n.disconnect()}))})),e.onReady(i)}),[]),J((()=>(e._cells(a),document.addEventListener("keydown",c),()=>{document.removeEventListener("keydown",c)})),[a]),j`<div class="IridiumNotebook" ref=${t}>
     <div class="IridiumHeader">
       <div class="IridiumTitle">../${e.title||""}</div>
       <${Vn}
