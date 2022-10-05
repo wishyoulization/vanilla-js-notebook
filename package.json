@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "description": "Plain Vanilla JavaScript Notebooks using ObservableHQ Runtime",
   "main": "dist/iridium.js",
+  "bin": "dev-server.js",
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",
+    "dev-server": "node dev-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,13 +36,20 @@
     "rollup-plugin-visualizer": "^5.5.2"
   },
   "dependencies": {
+    "@koa/cors": "^3.1.0",
     "@observablehq/runtime": "^4.11.2",
     "acorn": "^7.1.1",
     "codejar": "^3.5.0",
     "highlight.js": "^11.1.0",
     "htm": "^3.0.4",
+    "js-yaml": "^4.1.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "monaco-editor": "^0.33.0",
     "preact": "^10.5.13",
     "prettier": "^2.7.1",
-    "monaco-editor": "^0.33.0"
+    "rcfile": "^1.0.3"
   }
 }
