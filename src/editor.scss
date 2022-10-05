@@ -1,0 +1,168 @@
+:root {
+  --ir-bg: #f3f5f7;
+  --ir-text: #353535;
+  --ir-round: 3px;
+}
+
+#iridium-root-wrapper {
+  overflow-x: hidden;
+}
+
+#iridium-root {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.IridiumApp {
+  max-width: calc(100vw - 92px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px 0px;
+  width: 100%;
+}
+
+.IridiumApp {
+  &.IridiumNotebookUnsaved .IridiumCell.Pinned,
+  &.IridiumNotebookUnsaved .IridiumCell.UnPinned {
+    border-left: 1px solid var(--syntax_error);
+  }
+
+  .IridiumHeader {
+    width: 100%;
+    min-height: 40px;
+    margin-bottom: 12px;
+    overflow: auto;
+  }
+
+  .IridiumTitle {
+    display: inline-block;
+    padding-left: 14px;
+    line-height: 40px;
+    font-size: 22px;
+    font-weight: 300;
+    font-family: monospace;
+    color: #aaa;
+  }
+
+  .IridiumCell {
+    width: 100%;
+    position: relative;
+    background: #fff;
+    margin-bottom: 24px;
+
+    &.Pinned {
+      border-left: 1px solid #333;
+    }
+
+    &.UnPinned {
+      border-left: 1px solid transparent;
+    }
+
+    &:hover {
+      border-left: 1px solid #333;
+    }
+    &.Pinned.IridiumCellUnsaved,
+    &.UnPinned.IridiumCellUnsaved {
+      border-left: 1px solid var(--ir-error);
+    }
+  }
+
+  .CellResults,
+  .CellError {
+    position: relative;
+    padding: 0px 14px;
+    min-height: 32px;
+  }
+
+  .CellContainer {
+    position: relative;
+    padding: 14px;
+    background-color: #f5f5f5;
+  }
+
+  .CellBefore {
+    position: absolute;
+    top: -24px;
+    left: -14px;
+    padding-right: 10px;
+    opacity: 0;
+    z-index: 10;
+  }
+
+  .IridiumCell:hover .CellBefore {
+    opacity: 0.4;
+  }
+
+  .CellsAfter {
+    transform: translate(-30px, -16px);
+    padding-right: 200px;
+  }
+
+  .CellActions {
+    position: absolute;
+    left: calc(-100% - 1px);
+    top: 0px;
+    background: #f5f5f5;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    text-align: right;
+  }
+
+  .IridiumCell:hover .CellActions {
+    opacity: 0.3;
+  }
+
+  .IridiumCell .CellActions:hover,
+  .CellBefore:hover,
+  .CellsAfter:hover {
+    opacity: 1;
+  }
+
+  .CellEditorActions {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    display: none;
+  }
+
+  .IridiumCell:hover .CellEditorActions {
+    display: block;
+  }
+
+
+  .CodeEditor {
+    resize: none !important;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 20px;
+    tab-size: 4;
+  }
+
+  .CellResults[class*='viewof'] .observablehq:nth-child(2) {
+    display: none;
+  }
+
+  .CellResults[class*='mutable'] .observablehq:nth-child(1) {
+    display: none;
+  }
+}
+
+.IridiumViewOnly {
+  .IridiumApp {
+    .IridiumHeader,
+    .CellsAfter,
+    .CellBefore,
+    .CellContainer,
+    .CellActions {
+      display: none !important;
+    }
+    .IridiumCell {
+      border-left: none !important;
+    }
+  }
+}

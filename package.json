@@ -1,0 +1,43 @@
+{
+  "name": "@wishyoulization/vanilla-js-notebook",
+  "version": "0.0.1",
+  "description": "Simple notebook editor",
+  "main": "dist/iridium.js",
+  "scripts": {
+    "start": "rollup -c -w",
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wishyoulization/vanilla-js-notebook.git"
+  },
+  "files": [
+    "src/**/**",
+    "dist/**/**"
+  ],
+  "keywords": [
+    "notebook"
+  ],
+  "author": "wishyoulization",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "node-sass": "^6.0.1",
+    "rollup": "^2.50.4",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-styles": "^3.14.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-visualizer": "^5.5.2"
+  },
+  "dependencies": {
+    "@observablehq/runtime": "^4.11.2",
+    "acorn": "^7.1.1",
+    "codejar": "^3.5.0",
+    "highlight.js": "^11.1.0",
+    "htm": "^3.0.4",
+    "js-beautify": "^1.14.0",
+    "preact": "^10.5.13"
+  }
+}

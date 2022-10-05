@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <script src="./iridium.js"></script>
+    <style>
+      html {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    </style>
+  </head>
+  <body class="" data-hint-view-only="IridiumViewOnly">
+    <div id="iridium-root-wrapper">
+      <div id="iridium-root"></div>
+    </div>
+    <script>
+      /*
+      // Override to catch the notebook main
+      Iridium.ready = (main) => {
+        console.log(main);
+        main.define('variable', 257);
+      };
+      */
+      // Override with custom load, save, new, delete, list promises.
+      Iridium.load = () => {
+        return new Promise((yes, no) => {
+          yes([
+            {
+              id: 16,
+              pin: false,
+              sourceCode:
+                'function _(md){\n\treturn md`### Create notebook cells in Vanilla JS`\n}',
+            },
+            {
+              id: 2,
+              pin: true,
+              sourceCode: 'function _(){return "Hello, from unnammed cell"}',
+            },
+            {
+              id: 4,
+              pin: true,
+              sourceCode: 'function _(){return "Hello again, notice the _"}',
+            },
+            {
+              id: 6,
+              pin: true,
+              sourceCode: 'function a(){return 3}//notice the function name!',
+            },
+            {
+              id: 7,
+              pin: true,
+              sourceCode: 'function b(){return 2}',
+            },
+            {
+              id: 8,
+              pin: true,
+              sourceCode:
+                'function c(a,b){return a+b}// you explictly provide the cells to watch in your args!',
+            },
+            {
+              id: 15,
+              pin: false,
+              sourceCode:
+                'function _(md){\n\treturn md`### Importing other notebooks`\n}',
+            },
+            {
+              id: 9,
+              pin: true,
+              sourceCode:
+                'async function import_test(main, runtime, invalidation){\n\t//import things\n\tlet cell1_var, cell2_var\n\tawait import("./import_test.js").then(d=>{\n\t\tconst imported = runtime.module(d.default)\n\t\tcell1_var = main.import("cell1","cell1", imported)\n\t\tcell2_var = main.import("cell2","cell2", imported)\n\t})\n\n\t//cleanup\n\tinvalidation.then(d=>{\n\t\tcell1_var && cell1_var.delete()\n\t\tcell2_var && cell2_var .delete()\n\t})\n\t\n\t//render cell output\n\treturn "Imported cell1, cell2"\n}',
+            },
+            {
+              id: 10,
+              pin: true,
+              sourceCode: 'function _(cell1, cell2){\n\treturn cell1+cell2\n}',
+            },
+            {
+              id: 14,
+              pin: false,
+              sourceCode:
+                'function _(md){\n\treturn md`### Using mutable values`\n}',
+            },
+            {
+              id: 12,
+              pin: true,
+              sourceCode:
+                'function mutable_hello(Mutable){\n\tconst initial_value = 1\n\treturn new Mutable(initial_value)\n}',
+            },
+            {
+              id: 13,
+              pin: true,
+              sourceCode:
+                'function hello(mutable_hello){\n\treturn mutable_hello.generator\n}',
+            },
+            {
+              id: 18,
+              pin: false,
+              sourceCode: 'function _(md){\n\treturn md`### Using Viewof`\n}',
+            },
+            {
+              id: 19,
+              pin: true,
+              sourceCode:
+                "function viewof_text(Inputs){\n\treturn Inputs.textarea({value:'Hi'})\n}",
+            },
+            {
+              id: 20,
+              pin: true,
+              sourceCode:
+                'function text(viewof_text, Generators){\n\treturn Generators.input(viewof_text)\n}',
+            },
+          ]);
+        });
+      };
+
+      Iridium.render(
+        Iridium.html`<${Iridium.IridiumApp} Ir=${Iridium} />`,
+        document.getElementById('iridium-root'),
+      );
+    </script>
+  </body>
+</html>
