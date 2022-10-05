@@ -1,7 +1,7 @@
 {
   "name": "@wishyoulization/vanilla-js-notebook",
   "version": "0.0.1",
-  "description": "Simple notebook editor",
+  "description": "Plain Vanilla JavaScript Notebooks using ObservableHQ Runtime",
   "main": "dist/iridium.js",
   "scripts": {
     "start": "rollup -c -w",
@@ -37,7 +37,7 @@
     "codejar": "^3.5.0",
     "highlight.js": "^11.1.0",
     "htm": "^3.0.4",
-    "js-beautify": "^1.14.0",
-    "preact": "^10.5.13"
+    "preact": "^10.5.13",
+    "prettier": "^2.7.1"
   }
 }

@@ -8,31 +8,35 @@ const AsyncGeneratorFunction = Object.getPrototypeOf(
 
 export default {
   cell_from_source: (source) => {
-    const program = parse(source, {
-      ecmaVersion: 11,
-      sourceType: 'module',
-    });
-    const func = program.body[0];
-    const references = func.params.map((d) => d.name);
-    const bodyText = source.substring(func.body.start, func.body.end);
+    try {
+      const program = parse(source, {
+        ecmaVersion: 11,
+        sourceType: 'module',
+      });
+      const func = program.body[0];
+      const references = func.params.map((d) => d.name);
+      const bodyText = source.substring(func.body.start, func.body.end);
 
-    let code;
-    if (func.body.type !== 'BlockStatement') {
-      if (func.async)
-        code = `return (async function(){ return (${bodyText});})()`;
-      else code = `return (function(){ return (${bodyText});})()`;
-    } else code = bodyText;
+      let code;
+      if (func.body.type !== 'BlockStatement') {
+        if (func.async)
+          code = `return (async function(){ return (${bodyText});})()`;
+        else code = `return (function(){ return (${bodyText});})()`;
+      } else code = bodyText;
 
-    let f;
-    if (func.generator && func.async)
-      f = new AsyncGeneratorFunction(...references, code);
-    else if (func.async) f = new AsyncFunction(...references, code);
-    else if (func.generator) f = new GeneratorFunction(...references, code);
-    else f = new Function(...references, code);
-    return {
-      name: func.id.name,
-      dependencies: references,
-      function: f,
-    };
+      let f;
+      if (func.generator && func.async)
+        f = new AsyncGeneratorFunction(...references, code);
+      else if (func.async) f = new AsyncFunction(...references, code);
+      else if (func.generator) f = new GeneratorFunction(...references, code);
+      else f = new Function(...references, code);
+      return {
+        name: func.id.name,
+        dependencies: references,
+        function: f,
+      };
+    } catch (e) {
+      throw `Invalid Syntax; Expecting: function CELL_NAME(DEPS,BUILTINS){return "VALUE";} `;
+    }
   },
 };

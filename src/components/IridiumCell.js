@@ -2,9 +2,16 @@ import { html } from 'htm/preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { Inspector } from '@observablehq/runtime';
 import CodeEditor from './CodeEditor.js';
-import beautify from 'js-beautify/js/src/javascript';
+import parserBabel from 'prettier/parser-babel';
+import prettier from 'prettier/standalone';
 import IridiumIconButton from './IridiumIconButton.js';
 import VanillaJSNotebook from '../vanilla-js-notebook.js';
+
+const DEFAULT_CELL_TEXT = `function _() {
+  // Add required builtins and dependencies as args
+  // Name the cell by replacing _ with a new name
+  return;
+}`;
 
 const get_cell_type = (og_source) => {
   const source = ('' + og_source).trimStart();
@@ -26,7 +33,9 @@ const get_cell_type = (og_source) => {
 const IridiumCell = (props) => {
   const ref = useRef(null);
   const [error, _error] = useState(null);
-  const [sourceCode, _sourceCode] = useState(props.sourceCode || '');
+  const [sourceCode, _sourceCode] = useState(
+    props.sourceCode || DEFAULT_CELL_TEXT,
+  );
   const [savedSourceCode, _savedSourceCode] = useState(null);
   const [variables, _variables] = useState(null);
   const [setSource, _setSource] = useState(null);
@@ -152,7 +161,10 @@ const IridiumCell = (props) => {
               label="Indent"
               style="font-size: 1.25rem;"
               onClick=${() => {
-                var formatted = beautify(sourceCode, {});
+                var formatted = prettier.format(sourceCode, {
+                  parser: 'babel',
+                  plugins: [parserBabel],
+                });
                 setSource && setSource.setter(formatted);
               }}
             />
