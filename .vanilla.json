@@ -2,5 +2,6 @@
   "head": "",
   "port": 8888,
   "notebooks": "./TMP",
-  "local_editor": true
+  "local_editor": true,
+  "use_monaco": false
 }

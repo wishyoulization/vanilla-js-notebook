@@ -8,9 +8,7 @@ import IridiumIconButton from './IridiumIconButton.js';
 import VanillaJSNotebook from '../vanilla-js-notebook.js';
 
 const DEFAULT_CELL_TEXT = `function _() {
-  // Add required builtins and dependencies as args
-  // Name the cell by replacing _ with a new name
-
+  
   return;
 }`;
 
