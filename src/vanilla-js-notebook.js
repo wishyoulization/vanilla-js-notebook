@@ -13,6 +13,16 @@ export default {
         ecmaVersion: 11,
         sourceType: 'module',
       });
+      if (
+        program &&
+        program.body &&
+        program.body.length == 1 &&
+        program.body[0].type == 'FunctionDeclaration'
+      ) {
+        //Good code!
+      } else {
+        throw 'Invalid Cell';
+      }
       const func = program.body[0];
       const references = func.params.map((d) => d.name);
       const bodyText = source.substring(func.body.start, func.body.end);
@@ -34,9 +44,10 @@ export default {
         name: func.id.name,
         dependencies: references,
         function: f,
+        source: source.substring(func.start, func.end),
       };
     } catch (e) {
-      throw `Invalid Syntax; Expecting: function CELL_NAME(DEPS,BUILTINS){return "VALUE";} `;
+      throw `Invalid Syntax; Cell can't be saved, expecting: FunctionDeclaration \neg: function CELL_NAME(DEPS,BUILTINS){return "VALUE";} `;
     }
   },
 };

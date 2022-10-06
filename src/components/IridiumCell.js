@@ -10,6 +10,7 @@ import VanillaJSNotebook from '../vanilla-js-notebook.js';
 const DEFAULT_CELL_TEXT = `function _() {
   // Add required builtins and dependencies as args
   // Name the cell by replacing _ with a new name
+
   return;
 }`;
 
@@ -76,6 +77,9 @@ const IridiumCell = (props) => {
             .define(cell.name, cell.dependencies, cell.function);
       _error(null);
       _variables([variable]);
+      if (cell.source !== sourceCode) {
+        setSource && setSource.setter(cell.source);
+      }
     } catch (e) {
       _error(e);
       console.warn(e);
@@ -165,7 +169,7 @@ const IridiumCell = (props) => {
                   parser: 'babel',
                   plugins: [parserBabel],
                 });
-                setSource && setSource.setter(formatted);
+                setSource && setSource.setter(formatted.replace(/\n$/, ''));
               }}
             />
             <${IridiumIconButton}
